@@ -12,7 +12,7 @@ test_that("correct conversion of Leap month", {
     expect_that(lunarCal(as.Date("2012-06-04")), equals(c(Year=2012, Month=4, Day=15, Leap=1)))
     expect_that(lunarCal(as.Date("1903-07-01")), equals(c(Year=1903, Month=5, Day=7, Leap=1)))
     expect_that(lunarCal(as.Date("1922-06-30")), equals(c(Year=1922, Month=5, Day=6, Leap=1)))
-    expect_that(lunarCal(as.Date("1995-09-25")), equals(c(Year=1995, Month=8, Day=1, Leap=1))) #一九九五閏八月
+    expect_that(lunarCal(as.Date("1995-09-25")), equals(c(Year=1995, Month=8, Day=1, Leap=1))) 
 }
 )
 test_that("correct conversion of Year with Leap Month", {
@@ -29,12 +29,12 @@ test_that("Throw error when Solar Date is not in the supported range, or solarDa
 }
 )
 test_that("Formatting of lunar date", {
-    expect_that(lunarCal(x=as.Date("1981-07-21"), toString=TRUE), matches("辛酉年六月廿日"))
-    expect_that(lunarCal(x=as.Date("1981-07-21"), toString=TRUE, withZodiac=TRUE), matches("辛酉年六月廿日肖鷄"))
-    expect_that(lunarCal(x=as.Date("1995-09-25"), toString=TRUE), matches("乙亥年閏八月初一日"))
-    expect_that(lunarCal(x=as.Date("2011-01-05"), toString=TRUE), matches("庚寅年十二月初二日"))
-    expect_that(lunarCal(x=as.Date("1950-06-26"), toString=TRUE), matches("庚寅年五月十二日"))
-    expect_that(lunarCal(x=as.Date("2099-12-31"), toString=TRUE, withZodiac=TRUE), matches("己未年十一月廿日肖羊"))
+    expect_that(lunarCal(x=as.Date("1981-07-21"), toString=TRUE), matches("신유년육월스물일"))
+    expect_that(lunarCal(x=as.Date("1981-07-21"), toString=TRUE, withZodiac=TRUE), matches("신유년육월스물일초닭"))
+    expect_that(lunarCal(x=as.Date("1995-09-25"), toString=TRUE), matches("을해년윤팔월초일일"))
+    expect_that(lunarCal(x=as.Date("2011-01-05"), toString=TRUE), matches("경인년십이월초이일"))
+    expect_that(lunarCal(x=as.Date("1950-06-26"), toString=TRUE), matches("경인년오월열이일"))
+    expect_that(lunarCal(x=as.Date("2099-12-31"), toString=TRUE, withZodiac=TRUE), matches("기미년십일월스물일초양"))
     }
 )
 

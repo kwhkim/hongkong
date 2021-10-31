@@ -210,7 +210,6 @@ formatLunar <- function(lunarDate, withZodiac=FALSE) {
   
   return(paste0(stems[stemIndex], branches[branchIndex], "년", monthStr, "월", dayStr, "일", zodiacStr))
 }
-
 #'
 #' Check the validty of lunar date
 #'
