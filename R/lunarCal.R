@@ -189,13 +189,14 @@ formatLunar <- function(lunarDate, withZodiac=FALSE) {
   
   prefixDay <- c("초", "열", "스물", "서른")
   
-  numerals <- c('일','이','삼','사','오','육','칠','팔','구','십','십일','십이alculation
+  numerals <- c('일','이','삼','사','오','육','칠','팔','구','십','십일','십이')
+  ## actual calculation
   stemIndex <- (lunarDate["Year"]-3) %% 10
   stemIndex <- ifelse(stemIndex==0, length(stems), stemIndex)
   branchIndex <- (lunarDate["Year"]-3) %% 12
   branchIndex <- ifelse(branchIndex==0, length(branches), branchIndex)
   if (lunarDate["Month"] == 1) {    
-	monthStr <- "��    monthStr <- "정" 
+	monthStr <- "정" 
   } else {
     monthStr <- numerals[lunarDate["Month"]]
   }  
@@ -207,7 +208,9 @@ formatLunar <- function(lunarDate, withZodiac=FALSE) {
   zodiacStr <- ifelse(withZodiac, paste0("초", zodiac[branchIndex]), "")
   
   
-  return(paste0(stems[stemIndex], branches[branchIndex], "년", monthStr, "월", dayStr, "일eck for the validity of lunar date
+  return(paste0(stems[stemIndex], branches[branchIndex], "년", monthStr, "월", dayStr, "일", zodiacStr))
+}
+
 #'
 #' Check the validty of lunar date
 #'
