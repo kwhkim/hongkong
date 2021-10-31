@@ -180,29 +180,34 @@ lookupData <- function(lunarYearInt, lunarMonthInt, lookup) {
 
 formatLunar <- function(lunarDate, withZodiac=FALSE) {
   ## magic number
-  stems <- c("甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸")
-  branches <- c("子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥")
-  zodiac <- c("鼠", "牛", "虎", "兔", "龍", "蛇", "馬", "羊", "猴", "鷄", "狗", "豬") ### Cantonese version, not Vietnamese, OK?
-  prefixDay <- c("初", "十", "廿", "卅")
-  numerals <- c("一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二")
-  ## actual calculation
+  
+  stems <- c('갑','을','병','정','무','기','경','신','임','계')
+  
+  branches <- c('자','축','인','묘','진','사','오','미','신','유','술','해')
+  
+  zodiac <- c('쥐','소','호랑이','토끼','용','뱀','말','양','원숭이','닭','개','돼지')
+  
+  prefixDay <- c("초", "열", "스물", "서른")
+  
+  numerals <- c('일','이','삼','사','오','육','칠','팔','구','십','십일','십이alculation
   stemIndex <- (lunarDate["Year"]-3) %% 10
   stemIndex <- ifelse(stemIndex==0, length(stems), stemIndex)
   branchIndex <- (lunarDate["Year"]-3) %% 12
   branchIndex <- ifelse(branchIndex==0, length(branches), branchIndex)
-  if (lunarDate["Month"] == 1) {
-    monthStr <- "正" 
+  if (lunarDate["Month"] == 1) {    
+	monthStr <- "��    monthStr <- "정" 
   } else {
     monthStr <- numerals[lunarDate["Month"]]
-  }
-  monthStr <- ifelse(lunarDate["Leap"] == 1, paste0("閏", monthStr), monthStr)
+  }  
+  monthStr <- ifelse(lunarDate["Leap"] == 1, paste0("윤", monthStr), monthStr)
   dayStr <- paste0(prefixDay[(lunarDate["Day"] %/% 10) + 1], ifelse(lunarDate["Day"] %% 10 == 0, "", numerals[lunarDate["Day"] %% 10]))
-  dayStr <- ifelse(lunarDate["Day"] == 10, paste0("初", dayStr), dayStr)
-  zodiacStr <- ifelse(withZodiac, paste0("肖", zodiac[branchIndex]), "")
-  return(paste0(stems[stemIndex], branches[branchIndex], "年", monthStr, "月", dayStr, "日", zodiacStr))
-}
-
-#' Check for the validity of lunar date
+  
+  dayStr <- ifelse(lunarDate["Day"] == 10, paste0("초", dayStr), dayStr)
+  
+  zodiacStr <- ifelse(withZodiac, paste0("초", zodiac[branchIndex]), "")
+  
+  
+  return(paste0(stems[stemIndex], branches[branchIndex], "년", monthStr, "월", dayStr, "일eck for the validity of lunar date
 #'
 #' Check the validty of lunar date
 #'
